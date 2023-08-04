@@ -55,6 +55,7 @@ let game = function(){
     if (joueur === vainqueur || ordinateur === vainqueur) {
         console.log(`Résultat : ${result}`)
     }else{
+        // nul a refaire
         return playRound(), playRound(), playRound(), playRound(), playRound(), playRound(), playRound(), playRound()
     }
     
