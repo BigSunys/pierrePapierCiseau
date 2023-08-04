@@ -16,34 +16,57 @@ let getPlayerChoice = function(){
     }
 }
 
-let playRound = function(playerSelection, computerSelection){
+let joueur = 0;
+let ordinateur = 0;
+let vainqueur = 5;
+
+let playRound = function(){
+    const playerSelection = getPlayerChoice();
+    const computerSelection = getComputerChoice();
     // if(playerSelection != choix[0] || playerSelection != choix[1] || playerSelection != choix[2]){
     //     alert(`ERREUR ${playerSelection} n'est pas valable`)
     //     return getPlayerChoice()
     // }
     // definir le gagnant de la manche 
-    let gagner  = "Gagner  " + playerSelection + " " + "bas " + computerSelection;
-    let perdu   = "Perdu  " + computerSelection + " " + "bas " + playerSelection;
-    let egalite = "Egalité aucun vainqueur"
+    let gagner  = `Gagner\njoueur : ${playerSelection} superieur à ordinateur : ${computerSelection}`;
+    let perdu   = `Perdu\nordinauer : ${computerSelection} superieur à joueur : ${playerSelection}`;
+    let egalite = `Egalité aucun vainqueur ${computerSelection} - ${playerSelection}`
 
     if(playerSelection == choix[0] && computerSelection == choix[2] || playerSelection == choix[1] && computerSelection == choix[0] || playerSelection == choix[2] && computerSelection == choix[1]){
-        return gagner
+        joueur++
+        return `${gagner + " \n "} joueur : ${joueur} - ordinateur : ${ordinateur}`
     }else if(playerSelection == computerSelection){
-        return egalite
+        return `${egalite} joueur : ${joueur} - ordinateur : ${ordinateur}`
     }else if(playerSelection == "error" ){
         return "erreur mauvais choix "
     }
     else{
-        return perdu
+        perdu++
+        return `${perdu + " \n "} joueur : ${joueur} - ordinateur : ${ordinateur}`
     }
 }
 
-//fonction qui permet de jouer 5 tour et definit le gagnat a la fin 
+// fonction qui permet de jouer 5 tour et definit le gagnat a la fin 
+let game = function(){
+    let win = 'Vous gagner';
+    let lose = 'Vous perder'
+    let result = (joueur == vainqueur) ? win : (ordinateur == vainqueur) ? lose : 'erreur' ;
+    
+    if (joueur === vainqueur || ordinateur === vainqueur) {
+        console.log(`Résultat : ${result}`)
+    }else{
+        return playRound(), playRound(), playRound(), playRound(), playRound(), playRound(), playRound(), playRound()
+    }
+    
+    
+}
 
-const playerSelection = getPlayerChoice();
-const computerSelection = getComputerChoice();
 
-console.log("Résultat : " + playRound(playerSelection, computerSelection))
-console.log("Joueur : " + playerSelection)
-console.log("ordinateur : " + computerSelection)
+// const playerSelection = getPlayerChoice();
+// const computerSelection = getComputerChoice();
+
+
+// console.log("Résultat : " + playRound(playerSelection, computerSelection))
+// console.log("Joueur : " + playerSelection)
+// console.log("ordinateur : " + computerSelection)
 console.log("Hello World " + choix + " " + choix.length);
